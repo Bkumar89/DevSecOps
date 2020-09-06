@@ -1,0 +1,101 @@
+How To install git?
+red hat:
+# sudo yum install git
+or
+# sudo yum install git -y
+
+ubuntu:
+# sudo apt-get update
+# sudo apt-get install git
+or
+# sudo apt-get install git -y
+
+Git commands:
+RHEL(.rpm)              Ubuntu(.deb)      SUSE(rpm)      
+yum                     apt-get
+                        apt-get update
+yum install git         apt-get install <software>
+
+
+yum install git
+git --version
+git --help
+git status
+git add <filename>
+git commit <filename> -m "commit message"
+git show <sha1value>
+git show ba8536fac
+git config --global user.name "username"
+git config --global user.email "useremail"
+git push origin <branchname> , git push origin master
+git log
+git log -n1
+git log -n2
+git log --author="Bkumar89"
+git log --since="2020/05/09"
+git log --until="2020/05/09"
+git blame <filename>/password.java
+git blame: line by line code compare - who has done changes ...line by line ...
+
+
+Next Topics:
+1. SHA1 - Secure Hashing Algo 1?
+sha1sum abc.txt
+edit the abc.txt
+sha1sum abc.txt
+
+2. How to make local repository into a remote repository ?
+git init
+git remote add origin https://github.com/Bkumar89/localrepo.git
+then create the repo on githug with the same name and psuh using below
+git push --set-upstream origin master
+
+GIT Credentail Store: This will store the credentail into your session.
+git config --global credential.helper store
+
+3. git diff - to find the difference between 
+git diff 4be9af43:password.java 576837f1:password.java
+
+git log --follow pwd.java
+
+Commit the code from source to git directly
+git commit -am <commit message>
+git push origin master
+
+4. Reverting the code changes in git. Deletion is not permanent in git.
+ a. git checkout <sha1value>
+ b. copy the file into some other location
+ c. git checkout master
+ d. copy the file from (b. location) to your git repo location.
+ e. "git status" and "git add ." and <git commit -m "Commit message"> and <git push origin master>
+
+5. Branching
+6. Branching Strategy
+7. Merging
+8. Pull Request
+9. GIT Migartion
+10. Git Interview Questions
+
+11. How to update git from the binary package from one git version to another git version?
+Step 1: Install the required packages. below required pkgs are required to update.
+# sudo yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel
+# sudo yum install  gcc perl-ExtUtils-MakeMaker
+
+Step 2: Uninstall old git
+# sudo yum remove git
+
+Step 3: Download and compile git source binary
+# cd /usr/src
+# wget <git binary url>
+# tar -zxvf <git file>
+
+# cd /usr/src/<git extracted folder>
+# make prefix=/usr/local/git all
+# make prefix=/usr/local/git install
+# echo 'export PATH=$PATH:/usr/local/git/bin' >> /etc/bashrc
+# echo 'export PATH=$PATH:/usr/local/git/bin' > /etc/profile.d/git.sh
+# source /etc/bashrc
+
+Step 4: Check git version
+# git --version
+
