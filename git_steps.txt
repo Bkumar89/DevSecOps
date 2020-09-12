@@ -78,7 +78,9 @@ git push origin master
  Create the new branch without specifying base branch: git branch <new-branch>
  Create a branch from commit: git branch <branchname> <hashcommitid>
  Create a branch from a tag: git branch <tagbranchname> <tagname>
-
+ How to push more than one branches at one go: git push origin <branch1> <branch2>
+ How to push the code into one branch: git push origin <urbranch/develop>
+ How to push all changes from all branches: git push origin --all
 6. Branching Strategy
 7. Merging
 8. Pull Request
