@@ -81,8 +81,21 @@ git push origin master
  How to push more than one branches at one go: git push origin <branch1> <branch2>
  How to push the code into one branch: git push origin <urbranch/develop>
  How to push all changes from all branches: git push origin --all
+ How to delete the Remote branch: git push origin --delete <branchname>
+ How to delete the local branch: git branch -d <branchname>
+ 
 6. Branching Strategy
 7. Merging
+   Merging is the way to propagate your changes from one branch to another branch. Follow the below steps to merge one branch to another branch.
+   Example: Suppose My latest code is in feature/loginchanges branch and I have to merge the feature/loginchanges into develop branch. develop is target and feature/loginchanges is source branch.
+   Step 1: checkout the target branch where you have to merge- for above ex - git checkout develop
+   Step 2: Run the git merge command. Ex: git merge feature/loginchanges
+   Step 3: Code will be merged. If there are any code conflict, git will not merge the code and merge conflict error will come.
+   Step 4: resolve the merge conflict.
+   Step 5: Once merge conflict is resolved then push the merge to remote repos.
+   Types of Merge in GIT:
+   1. Fast Forward merge
+   2. Recursive merge
 8. Pull Request
    In their simplest form, pull requests are a mechanism for a developer to notify team members that they have completed a feature. Developer creates PR request
    when one feature is completed and ready to merge.
