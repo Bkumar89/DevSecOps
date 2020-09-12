@@ -70,9 +70,20 @@ git push origin master
  e. "git status" and "git add ." and <git commit -m "Commit message"> and <git push origin master>
 
 5. Branching
+ Create a new branch with base as master: git branch <newbranch> master
+ create a new branch and checkout with base as develop (develop branch should exists in your local): git checkour -b <newbranch> develop/<urbasebranch>
+ Show all the local Branch: git branch
+ Show the remote branchs: git branch -r
+ Show all the branchs local and remote: git branch -a
+ Create the new branch without specifying base branch: git branch <new-branch>
+ Create a branch from commit: git branch <branchname> <hashcommitid>
+ Create a branch from a tag: git branch <tagbranchname> <tagname>
+
 6. Branching Strategy
 7. Merging
 8. Pull Request
+   In their simplest form, pull requests are a mechanism for a developer to notify team members that they have completed a feature. Developer creates PR request
+   when one feature is completed and ready to merge.
 9. GIT Migartion
 10. Git Interview Questions
 
