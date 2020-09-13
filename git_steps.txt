@@ -165,8 +165,20 @@ Other way for Complete Migration:
     git tag -a release1.0 -m "commit message"
     git push origin <tagname> - push to remote
     git push origin --delete <tagname> - delete the tag from remote/origin.
+
+12. Difference between git merge and git rebase
+    Git merge and gir rebase both does the same thing but the approch is different. 
+    Git merge is considered to be non-destructive operation but git rebase is destructive operation. git rebase is used to merge the branches and rebase delete the histroy of commits. git rebase is used to make the git graph looks in a straight line. Graph looks clean but it deletes the commit history.
+    Thump rule of git rebase - never run git rebase on the repos which are used by many resources.
     
-12. Git Interview Questions
+    git command: checkout the master: git checkout master. merge the develop code into master: git rebase develop
+
+13. git bisect
+    git bisect uses the bisection method to find the first commit that introduced the bug you are looking for. Please go through the link below for more undersatnding.
+    https://dockyard.com/blog/2016/07/26/how-to-bisect-ember
+    https://stackoverflow.com/questions/4713088/how-to-use-git-bisect
+
+14. Git Interview Questions
     What is git?
     What is git cherrypick?
     which version of git you have used?
@@ -181,7 +193,7 @@ Other way for Complete Migration:
     What is branching strategy and its benefits ? Please explain what is the branching strategy your company follows? Hint - need to explain here feature barnches concepts and master/develop.
     Have you done git migration? How to migarte from one git (bitbucket) to another git (azure devops git)? from svn to git migration?
 
-13. How to update git from the binary package from one git version to another git version?
+15. How to update git from the binary package from one git version to another git version?
 Step 1: Install the required packages. below required pkgs are required to update.
 # sudo yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel
 # sudo yum install  gcc perl-ExtUtils-MakeMaker
