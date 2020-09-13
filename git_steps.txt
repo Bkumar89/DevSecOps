@@ -155,7 +155,18 @@ Other way for Complete Migration:
     git pull - git pull will fetch the new code changes from the remote git remo and then merge the changes immediately in your local repo.
     git fetch - git fetch will fetch the new changes from the remote git repo and does not merge the changes in your local repo. we need to merge the changes manually.
     
-11. Git Interview Questions
+11. GIT tags
+    Git tag is like branch but it differs with branch in pointing commits. Tag is tag ref point to constant commit. A tag is not changed by the commit. It is particularly used to point a particular commitfor release purpose. There 2 types of tags got provides.
+    Annotated tags - It has name, user, time.
+    Light weight tags -
+    
+    git tag <tagname> - create a new tag
+    git tag -a release1.0  <without commit message>
+    git tag -a release1.0 -m "commit message"
+    git push origin <tagname> - push to remote
+    git push origin --delete <tagname> - delete the tag from remote/origin.
+    
+12. Git Interview Questions
     What is git?
     What is git cherrypick?
     which version of git you have used?
@@ -166,10 +177,11 @@ Other way for Complete Migration:
     How to check line by line code commit in git? git blame.
     How to check logs of git? git log
     What is pull request and why it is needed ?
+    What is tags in git and why it is used?
     What is branching strategy and its benefits ? Please explain what is the branching strategy your company follows? Hint - need to explain here feature barnches concepts and master/develop.
-    Have you done git migration? How to migarte from one git (bitbucket) to another git (azure devops git)? from svn to git migration? Hint - https://www.atlassian.com/git/tutorials/git-move-repository 
+    Have you done git migration? How to migarte from one git (bitbucket) to another git (azure devops git)? from svn to git migration?
 
-12. How to update git from the binary package from one git version to another git version?
+13. How to update git from the binary package from one git version to another git version?
 Step 1: Install the required packages. below required pkgs are required to update.
 # sudo yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel
 # sudo yum install  gcc perl-ExtUtils-MakeMaker
