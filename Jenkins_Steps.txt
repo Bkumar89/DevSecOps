@@ -1,0 +1,26 @@
+1. What is Jenkins?
+Jenkisn is a Continuous Integration, Continuous Delivery and Continuous Deployment tool. Jenkins is build process automation tool.
+We have many tools for CI/CD like Jenkins/Teamcity/Bamboo/Azure DevOps/GITLAB/etc.
+Jenkins is free/open source tool and very powerful.
+
+We need to have java 1.8 installed on our machine before installing jenkins.
+
+2. How to set up Jenkins?
+ Step 1: First download the tomcat application server from apache tomact website. wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.34/bin/apache-tomcat-9.0.34.tar.gz
+ Step 2: Go to /opt/tools and run the comma "wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.34/bin/apache-tomcat-9.0.34.tar.gz"
+ Step 3: Extract the package. Go to the directory where you ahve downloaded the tomact and extarct "tar -zxvf apache-tomcat-9.0.34.tar.gz"
+ Step 4: apache-tomact tar will be extracted and one folder will come "apache-tomcat-9.0.34".
+ Step 5: Download the jenkins war file at your tools folder. "wget https://get.jenkins.io/war-stable/2.249.1/jenkins.war"
+ Step 6: Copy the jenkins.war into your tomcat/webapps folder. "cp jenkins.war /opt/tools/apache-tomcat-9.0.34/webapps
+ Step 7: Go to tomact bin directtory. cd /opt/tools/apache-tomact-9.0./bin
+ Step 8: Start the tomact server from bin directory. "sh startup.sh"
+ Step 9: Change the inbound rules in your AWS virtual machine and allow inbound rules port 8080.
+ Step 10: Access the tomcat on this url. http://<ur public ip>:8080
+ Step 11: Access the jenins application at this url. http://<ur public ip>:8080/jenkins
+ Step 12: See the initial password and Provide the initial password. cat /home/ec2-user/.jenkins/********.
+ Step 13: Create the user as admin/aything name and install the suggested plugin.
+ Step 14: Access the jenkins application. http://<ur public ip>:8080/jenkins
+ 
+ 
+ 
+ 
