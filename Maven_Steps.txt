@@ -48,6 +48,14 @@ This phase installs the package in local/remote maven repository.
 deploy:
 Copies the final package to the remote repository.
 
+Initilize
+Validation
+compile
+test compile
+test execution
+package
+install
+
 4. How to create project in maven using command line as non interactive.
 mvn archetype:generate -DgroupId=com.mycompany -DartifactId=mycompany -Dversion=1.0.0-SNAPSHOT -DinteractiveMode=false
 
@@ -59,7 +67,7 @@ mvn archetype:generate -DgroupId=com.flipkart -DartifactId=Flipkart -Dversion=1.
 Maven Follows naming convention to name the jar as artifactId-version.jar. Other build tools does not follow any naming convention.
 
 6. Types of Repository in Maven
-a. Central Repository
+a. Central Repository - Public
 b. Private Repository
 c. Local Repository
 
@@ -67,8 +75,12 @@ Local Repository of project is under user's home directory .m2 folder. for examp
 
 $HOME_DIR/.m2/repository/groupId/artifactId/version
 
-7. Web application project using maven.
-$ mvn archetype:generate -DartifactId=Flipkart -DgroupId=com.flipkart -Dversion=1.0.0-SNAPSHOT -DinteractiveMode=false -DarchetypeArtifactId=maven-archetype-webapp
+7. Web application project using maven. GAV
+$ mvn archetype:generate -DartifactId=Walkart -DgroupId=com.walkart.flipkart -Dversion=1.0.0-SNAPSHOT -DinteractiveMode=false -DarchetypeArtifactId=maven-archetype-webapp
+
+
+
+1.0.0-RELEASE
 
 8. Compile the project in maven:
 mvn install pom.xml -s /opt/mytools/maven/apache-maven-3.6.3/conf/settings.xml
@@ -92,6 +104,39 @@ Sample pom.xml:
   <version>1.0.0-SNAPSHOT</version>
   <name>Flipkart Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  
+  <repositories>
+  
+    <repository>
+     <id>repoid</id>
+	 <name>reponame</name>
+	 <url>http://example.com/nexus</url>
+    </repository
+	
+	<repository>
+     <id>repoid1</id>
+	 <name>reponame1</name>
+	 <url>http://example1.com/nexus</url>
+    </repository
+	
+  </repositories>
+  
+  <distributionmanagement>
+  
+  <repository>
+     <id>repoid</id>
+	 <name>reponame</name>
+	 <url>http://example.com/nexus</url>
+    </repository
+	
+	<repository>
+     <id>repoid1</id>
+	 <name>reponame1</name>
+	 <url>http://example1.com/nexus</url>
+    </repository
+	
+  </distributionmanagement>
+  
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -104,6 +149,11 @@ Sample pom.xml:
     <finalName>Flipkart</finalName>
   </build>
 </project>
+
+END of pom.xml
+
+Important:
+whatever repositories will be mentioned in repository tag inside pom.xml those repository ID, user and password will be added into settings.xml to connect to the repo and push the artifacts.
 
 9. settings.xml will be present inside the directory where maven is installed. suppose your maven is install in /opt/tools/maven/apache-maven-3.6.3/conf/settings.xml.
 If you want to change the local repository from default user home directory to some other directory then please change in the settings.xml at below location.
