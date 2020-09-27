@@ -181,3 +181,13 @@ settings.xml can be at user level and global level.
       <password>repopwd</password>
     </server>
 </servers>
+
+Interview Question in Maven:
+1. What is maven and how it works? HInt: maven is a build tool and it works as GAV (Groupid, versionid, artifacts id) model. 
+2. What is lifecycle of maven? - Hint: Above It is given.
+3. Please explain the sample pom.xml ? Hint: write the pom structure. It is given above.
+4. What is difference between "install" and "deploy" goal in maven? - Hint: install is used to compile the project and after project compilation install puts the build artifacts 
+                                                                            in the local maven repository. deploy - it is also used to compile the project but deploy will upload                                                                             the artifacts inside the remote repository.
+5. What are the type of repositories in maven? Hint: Local repo, central repo, priavte repo.
+6. How many settings.xml can be maintained ? Hint - 2 settings.xml can be there. one at user level and another is at user level.
+7. What is dependency in pom.xml? Hint: dependency can be added in pom.xml for project library dependencies. 
