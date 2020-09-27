@@ -22,6 +22,28 @@ We need to have java 1.8 installed on our machine before installing jenkins.
  Step 14: Access the jenkins application. http://<ur public ip>:8080/jenkins
  Step 15: To check if tomcat or any process is running. Command is - "ps -ef | grep <processname>" Ex: "ps -ef | grep tomcat"
  
+3. Types of Pipeline in jenkins
+  a. Free style Pipeline Jobs
+  b. Declaractive Pipeline Jobs
+  c. Scripted Pipeline Jobs
+
+4. How to copy any file from one server to another in linux?
+   We can use scp uniltiy to copy the file. Command syntax is - scp <filename>  <username>@<ipaddress>:<directory to copy>
+   example - scp abc.txt ec2-user@172.31.56.177:/opt/mytools
+
+
+
+Interview Questions in Jenkins:
+1. What is CI/CD and How Jenkins is used for CI/CD?
+2. What is the difference between Continuos Delivery and Continuous Deployment?
+   Ans - Delivery is to deploy the build Artifacts into DEV/QA environment automatically and for prod/preprod approval is needed. In Deployment, build will be auto deployed to 
+         prod environment.
+3. Have have you done in Jenkins for Security?
+   Ans - We have used LDAP for Authentication and Project-Based Matrix Security for Authoriziation.
+   
+Sample Declaractive Pipeline Example:
+
+  
  
  
  
