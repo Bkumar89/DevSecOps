@@ -78,16 +78,122 @@ git push origin master
  Create the new branch without specifying base branch: git branch <new-branch>
  Create a branch from commit: git branch <branchname> <hashcommitid>
  Create a branch from a tag: git branch <tagbranchname> <tagname>
-
+ How to push more than one branches at one go: git push origin <branch1> <branch2>
+ How to push the code into one branch: git push origin <urbranch/develop>
+ How to push all changes from all branches: git push origin --all
+ How to delete the Remote branch: git push origin --delete <branchname>
+ How to delete the local branch: git branch -d <branchname>
+ 
 6. Branching Strategy
+   Follw the feature approach which git follow. each feature, cerate a branch and develop the feature in that brach and then merge the branch into your develop branch and then for release merge the develop into the master. For any defect fixes, create a branch from the base as per need, do the deveploment and merge the code into all the required branches.
+   
 7. Merging
+   Merging is the way to propagate your changes from one branch to another branch. Follow the below steps to merge one branch to another branch.
+   Example: Suppose My latest code is in feature/loginchanges branch and I have to merge the feature/loginchanges into develop branch. develop is target and feature/loginchanges
+   is source branch.
+   Step 1: checkout the target branch where you have to merge- for above ex - git checkout develop
+   Step 2: Run the git merge command. Ex: git merge feature/loginchanges
+   Step 3: Code will be merged. If there are any code conflict, git will not merge the code and merge conflict error will come.
+   Step 4: resolve the merge conflict.
+   Step 5: Once merge conflict is resolved then push the merge to remote repos.
+   Types of Merge in GIT:
+   1. Fast Forward merge - Fast forward merge happens when there is only changes in one branch side and git has to move the HEAD to forward side.
+      create a new branch from develop as base: git checkout -b newbranch develop
+      Make the code changes in newbranch.
+      checkout the develop branch and merge ur changes in that. git checkout develop and git merge newbranch.
+   2. Recursive merge/3 way Merge: Recursive merge happens when there are changes in both the branches source and target and we are mergeing. When we merge git uses recursive   merge strategy because it has to check for backward changes also. This is also called 3 way merge.
+      create a new branch from develop as base: git checkout -b newbranch develop
+      Make the code changes in newbranch. create new file and modify the existing file.
+      Some developers have made the code changes in develop branch also. Create the new file and modify the existing file. git checkout develop. make the code changes in develop.
+      checkout the develop branch and merge ur changes in that. git checkout develop and git merge newbranch.
+      This will show the 3 way merge or recursive merge.
+ 
+ How to resolve merge conflict:
+ step 1: create a branch from base as develop: git checkout -b bugfix develop
+ step 2: make the code changes in bugfix branch.
+ step 3: meanwhile some other developer made the changes in develop branch in the same file which you have made changes in bugfix. (for own practice, please checkout the develop branch and make the changes in the same file where you make the changes in bugfix branch. git checkout develop. change the same file which you have changed in bugfix branch.)
+ step 4: checkout the code for develop branch. git checkout develop
+ step 5: merge the code into develop. git merge bugfix. Merge conflict will occur. Example of conflict details.
+ <<<<<<<
+Changes made on the branch that is being merged into. In most cases,
+this is the branch that I have currently checked out (i.e. HEAD).
+|||||||
+The common ancestor version.
+=======
+Changes made on the branch that is being merged in. This is often a 
+feature/topic branch.
+>>>>>>>
+step 5: open the file where you got the merge conflict 
+step 6: change the file with correct code
+step 7: Run git status and add the file in stage area and commit the file and push.
+step 8: when we commit merge conflicted file, we do not have to give commit message while commiting. git takes it own commit message but if we want we can provide commit message.
+ 
 8. Pull Request
-   In their simplest form, pull requests are a mechanism for a developer to notify team members that they have completed a feature. Developer creates PR request
+   In the simplest form, pull requests are a mechanism for a developer to notify team members that they have completed a feature. Developer creates PR request
    when one feature is completed and ready to merge.
+   
 9. GIT Migartion
-10. Git Interview Questions
+   Step 1: Clone the git repo which you have to migarte. Craete a directory (mkdir repomigration), git clone <remote repo url>.
+   Step 2: Go into the directory and repo.
+   Step 3: Check all the branch: git checkout -a
+   Step 4: Checkout all branches which you want to migarte: git checkout <branch1>
+   Step 5: Fetch all tags. git fetch --tags
+   Step 6: remove the old origin: git remote rm origin
+   Step 7: Create the new remote repo and add the new origin repo of git: git remote add origin <url to NEW repo>.
+   Step 8: Push all your changes to new origin: git push origin --all
+   Step 9: git push --tags
+IMPORTANT: If you want to copy the entire repos then skip the above steps from 1 to 5: git clone --mirror <old repo> <ur directory>
 
-11. How to update git from the binary package from one git version to another git version?
+Other way for Complete Migration:
+   Step 1: Clone the old repo with --bare clone: git clone --bare https://github.com/abcd/old-repo.git 
+   Step 2: Go to the directory old repo: cd old-repo
+   Step 3: Create the remote repo in your github/bitbucket/azuredveops
+   Step 4: Mirror the repo to new git remote repo url: git push --mirror <new remote repo url>
+   
+10. git pull and git fetch
+    if there are changes already done in remote repo and those changes you do not have in local repo then to sync with remote repo we do git pull or git fetch.
+    git pull - git pull will fetch the new code changes from the remote git remo and then merge the changes immediately in your local repo.
+    git fetch - git fetch will fetch the new changes from the remote git repo and does not merge the changes in your local repo. we need to merge the changes manually.
+    
+11. GIT tags
+    Git tag is like branch but it differs with branch in pointing commits. Tag is tag ref point to constant commit. A tag is not changed by the commit. It is particularly used to point a particular commitfor release purpose. There 2 types of tags got provides.
+    Annotated tags - It has name, user, time.
+    Light weight tags -
+    
+    git tag <tagname> - create a new tag
+    git tag -a release1.0  <without commit message>
+    git tag -a release1.0 -m "commit message"
+    git push origin <tagname> - push to remote
+    git push origin --delete <tagname> - delete the tag from remote/origin.
+
+12. Difference between git merge and git rebase
+    Git merge and gir rebase both does the same thing but the approch is different. 
+    Git merge is considered to be non-destructive operation but git rebase is destructive operation. git rebase is used to merge the branches and rebase delete the histroy of commits. git rebase is used to make the git graph looks in a straight line. Graph looks clean but it deletes the commit history.
+    Thump rule of git rebase - never run git rebase on the repos which are used by many resources.
+    
+    git command: checkout the master: git checkout master. merge the develop code into master: git rebase develop
+
+13. git bisect
+    git bisect uses the bisection method to find the first commit that introduced the bug you are looking for. Please go through the link below for more undersatnding.
+    https://dockyard.com/blog/2016/07/26/how-to-bisect-ember
+    https://stackoverflow.com/questions/4713088/how-to-use-git-bisect
+
+14. Git Interview Questions
+    What is git?
+    What is git cherrypick?
+    which version of git you have used?
+    what is git bisect?
+    what is merge conflict and how to resolve merge conflict?
+    What is fast forward merge and recursive merge?
+    What is the difference between git merge and git rebase?
+    How to check line by line code commit in git? git blame.
+    How to check logs of git? git log
+    What is pull request and why it is needed ?
+    What is tags in git and why it is used?
+    What is branching strategy and its benefits ? Please explain what is the branching strategy your company follows? Hint - need to explain here feature barnches concepts and master/develop.
+    Have you done git migration? How to migarte from one git (bitbucket) to another git (azure devops git)? from svn to git migration?
+
+15. How to update git from the binary package from one git version to another git version?
 Step 1: Install the required packages. below required pkgs are required to update.
 # sudo yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel
 # sudo yum install  gcc perl-ExtUtils-MakeMaker

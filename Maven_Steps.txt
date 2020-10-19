@@ -1,0 +1,193 @@
+1. How to install maven?
+To install maven, first we need to install java because maven needs java for execution.
+
+Java Installation:
+Step 1. download the .rpm (only for rhel) or .tar.gz installer file if you want to install on any linux.
+Step 2. create the directory in /opt or any location which you want to install. 
+   a. create dir - "sudo mkdir -p /opt/tools" (when we create using sudo the folder/file will have root owner permission)
+   b. change the permission of the directory to normal user. got to /opt - "cd /opt", change the owner permission - "sudo chown -R ec2-user:ec2-user tools"
+   c. Copy the java.tar.gz file to /opt/tools using winscp (download winscp, its a free tool for ftp file transfer)
+   d. go to /opt/tools, "cd /opt/tools". 
+   e. extract the tar file using this command. "tar -zxvf  jdk-8u261-linux-x64.tar.gz". it will create a folder.
+   f. go to newly extracted folder of java. "cd /opt/tools/jdk1.8.****" and run the command "pwd"
+   g. go to user's home directory. run the command "cd" to go to user's home directory.
+   i. open the file ".bashrc" in vi editor. "vi .bashrc"
+   j. add the line there before export PATH is written. "export JAVA_HOME=/opt/tools/jdk1.8.0_261" and edit the line of export PATH as "export PATH=$JAVA_HOME/bin:$PATH"
+   h. save the file and exit from vi editor and run the command. "source .bashrc"
+   k. Follow the same process for maven installation and setting the path of maven in linux. USe the same process to set the path of any software. After changing the .bashrc file, you must run the "source .bashrc".
+Step 3. Download the maven tar.gz file from http://apachemirror.wuchna.com/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz and copy inside tools directory or any other directory and follow the same from above step "e".
+Step 4. The convention is to use M2_HOME for maven name. like "vi .bashrc", "export M2_HOME=<ur directory of maven>", "export PATH=$JAVA_HOME/bin:$M2_HOME/bin:$PATH"
+Step 5. Once path is set. run the command "which java", or which mvn" to know if that tool is installed or not. 
+Step 6. for java version, run "java -version" and for maven "mvn --version"
+
+2. What is maven?
+Maven is a build automation tool used primarily for Java projects. Maven can also be used to build and manage projects written in C#, Ruby, Scala, and other languages. The Maven project is hosted by the Apache Software Foundation, where it was formerly part of the Jakarta Project.
+
+Maven addresses two aspects of building software: how software is built, and its dependencies.
+
+3. Lifecycle of maven.
+Below are the 7 life cycle of maven.
+validate:
+Validates if the project is correct and if all necessary information is available.
+
+compile:
+Source code compilation is done in this phase.
+
+test:
+Tests the compiled source code suitable for testing framework.
+
+package:
+This phase creates the JAR/WAR package as mentioned in the packaging in POM.xml.
+
+verify:
+run any checks to verify the package is valid and meets quality criteria
+
+install:
+This phase installs the package in local/remote maven repository.
+
+deploy:
+Copies the final package to the remote repository.
+
+Initilize
+Validation
+compile
+test compile
+test execution
+package
+install
+
+4. How to create project in maven using command line as non interactive.
+mvn archetype:generate -DgroupId=com.mycompany -DartifactId=mycompany -Dversion=1.0.0-SNAPSHOT -DinteractiveMode=false
+
+Maven Quick Start Template Command:
+mvn archetype:generate -DgroupId=com.flipkart -DartifactId=Flipkart -Dversion=1.0.0-SNAPSHOT -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+
+5. Maven Naming convention of jar
+Maven Follows naming convention to name the jar as artifactId-version.jar. Other build tools does not follow any naming convention.
+
+6. Types of Repository in Maven
+a. Central Repository - Public
+b. Private Repository
+c. Local Repository
+
+Local Repository of project is under user's home directory .m2 folder. for example, if it is running as ec2-user. maven will create a hiddle folder in ec2-suer home directory.
+
+$HOME_DIR/.m2/repository/groupId/artifactId/version
+
+7. Web application project using maven. GAV
+$ mvn archetype:generate -DartifactId=Walkart -DgroupId=com.walkart.flipkart -Dversion=1.0.0-SNAPSHOT -DinteractiveMode=false -DarchetypeArtifactId=maven-archetype-webapp
+
+
+
+1.0.0-RELEASE
+
+8. Compile the project in maven:
+mvn install pom.xml -s /opt/mytools/maven/apache-maven-3.6.3/conf/settings.xml
+
+clean and compile:
+mvn clean install pom.xml -s /opt/mytools/maven/apache-maven-3.6.3/conf/settings.xml
+
+Clean, install and deploy:
+mvn clean install deploy pom.xml -s /opt/mytools/maven/apache-maven-3.6.3/conf/settings.xml
+
+
+pom - Project Object Model
+
+Sample pom.xml:
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.flipkart</groupId>
+  <artifactId>Flipkart</artifactId>
+  <packaging>war</packaging>
+  <version>1.0.0-SNAPSHOT</version>
+  <name>Flipkart Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+  <repositories>
+  
+    <repository>
+     <id>repoid</id>
+	 <name>reponame</name>
+	 <url>http://example.com/nexus</url>
+    </repository
+	
+	<repository>
+     <id>repoid1</id>
+	 <name>reponame1</name>
+	 <url>http://example1.com/nexus</url>
+    </repository
+	
+  </repositories>
+  
+  <distributionmanagement>
+  
+  <repository>
+     <id>repoid</id>
+	 <name>reponame</name>
+	 <url>http://example.com/nexus</url>
+    </repository
+	
+	<repository>
+     <id>repoid1</id>
+	 <name>reponame1</name>
+	 <url>http://example1.com/nexus</url>
+    </repository
+	
+  </distributionmanagement>
+  
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <finalName>Flipkart</finalName>
+  </build>
+</project>
+
+END of pom.xml
+
+Important:
+whatever repositories will be mentioned in repository tag inside pom.xml those repository ID, user and password will be added into settings.xml to connect to the repo and push the artifacts.
+
+9. settings.xml will be present inside the directory where maven is installed. suppose your maven is install in /opt/tools/maven/apache-maven-3.6.3/conf/settings.xml.
+If you want to change the local repository from default user home directory to some other directory then please change in the settings.xml at below location.
+  <!-- localRepository
+   | The path to the local repository maven will use to store artifacts.
+   |
+   | Default: ${user.home}/.m2/repository
+  <localRepository>/opt/mytools/maven</localRepository>
+ -->
+
+settings.xml can be at user level and global level.
+
+10. The repository user credentials is mentioned in settings.xml.
+  <servers>
+    <!-- server
+     | Specifies the authentication information to use when connecting to a particular server, identified by
+     | a unique name within the system (referred to by the 'id' attribute below).
+     |
+     | NOTE: You should either specify username/password OR privateKey/passphrase, since these pairings are
+     |       used together.
+     |
+    <server>
+      <id>deploymentRepo</id>
+      <username>repouser</username>
+      <password>repopwd</password>
+    </server>
+</servers>
+
+Interview Question in Maven:
+1. What is maven and how it works? HInt: maven is a build tool and it works as GAV (Groupid, versionid, artifacts id) model. 
+2. What is lifecycle of maven? - Hint: Above It is given.
+3. Please explain the sample pom.xml ? Hint: write the pom structure. It is given above.
+4. What is difference between "install" and "deploy" goal in maven? - Hint: install is used to compile the project and after project compilation install puts the build artifacts 
+                                                                            in the local maven repository. deploy - it is also used to compile the project but deploy will upload                                                                             the artifacts inside the remote repository.
+5. What are the type of repositories in maven? Hint: Local repo, central repo, priavte repo.
+6. How many settings.xml can be maintained ? Hint - 2 settings.xml can be there. one at user level and another is at user level.
+7. What is dependency in pom.xml? Hint: dependency can be added in pom.xml for project library dependencies. 
