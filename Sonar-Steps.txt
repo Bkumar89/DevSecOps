@@ -1,0 +1,32 @@
+1. Download and install java. If ypu have .tar file on another server then transfer using scp.
+To extrat the .tar file, tar -zxvf jdk-8u261-linux-x64.tar.gz
+<scp (filename) usernameoftargetserver@ipoftargetserver:pathoftargetserver> 
+Ex: scp jdk-8u261-linux-x64.tar.gz ec2-user@172.31.63.103:/opt/mytools>
+
+2. Set the JAVA Path in your system. go to your user home directory. /home/ec2-user. open .bashrc and add JAVA_HOME=urjavapathwithoutbin. 
+Ex:
+PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+export JAVA_HOME=/opt/mytools/jdk1.8.0_261
+export PATH=$PATH:$JAVA_HOME/bin
+
+3. Download SonarQube Binary.
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.6.zip
+4. If wget is not install then please install wget using this. <sudo yum install wget -y>
+5. Extract the sonar zip file. <unzip sonarqube-7.6.zip>
+6. If unzip is not installed then please install using <sudo yum install unzip -y>
+7. <sonar_home (/opt/sonarserver/sonarquve-7.6>>/bin/linux-x86-64 and start the sonar server. <./sonar.sh start>
+8. Install the Sonar plugins if not installed in your jenkins.
+9. Jenkins -> manage jenkins-> configure system->sonarqube server
+10. Jenkins->manage jenkins->global tool configuration->sonar-scanner
+11. Sonar Properties:
+sonar.projectKey=Dynamicdemoproject
+sonar.projectName=Dynamicdemoproject
+sonar.projectVersion=1.0
+sonar.sources=src
+sonar.host.url=http://34.227.94.191:9000
+
+
+SAST - Static Application Security Testing 
+DAST - Dynamic Application Security Testing
+Comparision between both:
+https://www.synopsys.com/blogs/software-security/sast-vs-dast-difference/#:~:text=Static%20application%20security%20testing%20(SAST,white%20box%20method%20of%20testing.&text=Dynamic%20application%20security%20testing%20(DAST,that%20an%20attacker%20could%20exploit.
