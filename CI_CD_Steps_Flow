@@ -1,0 +1,18 @@
+Nexus:
+Nexus is a repository management tool. We use it to keep the build artifacts into nexus.
+
+Sonar:
+Sonar is a static code analysis tool.
+
+WHITESOURCE - It is a tool which checks the open soirce .jar/library used in your project/product. Security vulnaberlaties.
+
+CHECKMARX - 
+
+CI JOB- CHECKOUT -> BUILD->SONARSCAN->PUBLISH ARTIFACTS ON NEXUS3
+
+CD JOB- Continous Delivery / Continuous Deployment
+
+Continous Delivery - DEV->QA. As part of Continous Delivery, Automated process will be there to deploy the build till QA env. 
+If you want to deploy in UAT/PREPROD/PROD then you need permission to deploy. This will be manual or we have written some other job for this.
+
+Continuous Deployment - DEV->QA->UAT->PREPROD->PROD. The whole process till PROD env is automated.
