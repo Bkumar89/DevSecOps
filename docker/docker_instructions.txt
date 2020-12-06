@@ -1,0 +1,25 @@
+docker ps - to see the running list of containers.
+
+docker ps -a - to see all the running or stopped containers.
+
+docker image ls - to see all the images in local.
+
+docker rmi -f <imageid1> <imageid2> <imageid3> .... - to delete the images from local.
+
+docker rm -f <containerid1> <containerid2> <containerid3> ...... - to delete the running containers forcefully.
+
+docker stop <containerid1> <containerid2> <containerid3> .....  - to stop the running container.
+
+To build the Docker image from docker file:
+docker build -t <imagename> -f <dockerfilename> <pathof thedocker contextroot directroy>
+example - docker build -t bishkumar/tomcat_jenkins:9.0.29 -f Dockerfile .
+
+To create the container from image:
+docker run -it -d -p <containerport>:<hostport> --name <containername> <imagename> <terminal like /bin/bash>
+example: docker run -it -d -p 9090:8080 --name myjenkins bishkumar/tomcat_jenkins:9.0.29 /bin/bash
+
+To login to the docker container:
+docker exec -it <containerid/name> bash
+or
+docker attach <containername/id>
+example - docker exec -it myjenkins
