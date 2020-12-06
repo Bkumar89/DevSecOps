@@ -1,0 +1,16 @@
+Interview Questions in Jenkins:
+1. What is CI/CD and How Jenkins is used for CI/CD?
+2. What is the difference between Continuos Delivery and Continuous Deployment?
+   Ans - Delivery is to deploy the build Artifacts into DEV/QA environment automatically and for prod/preprod approval is needed. In Deployment, build will be auto deployed to 
+         prod environment.
+3. Have have you done in Jenkins for Security?
+   Ans - We have used LDAP for Authentication and Project-Based Matrix Security for Authoriziation.
+4. How many pulgins have you used in Jenkins? [Hints: Many, name at least 5, Sonar platform, parametrized trigger, nexus platform plugin, pipeline plugin, maven plugin, 
+ant plugin, etc]
+5. How to run 10 jobs at the same on different nodes/ [Hints: set the label while doing agent configuration]
+6. write the declaractive pipeline syntax.
+7. What is shared library in jenkins?
+8. How do you migrate the jenkins from one server to another server without data loss? [HInts: take the back of .jenkins because it will have all the config]
+9. How many jobs you have in your jenkins? [Hints: answer like we ahve many jobs aorind 50]
+10. Types of pipeline in jenkins?[ freestyle, declaractive, scripted]
+11. How do you build docker images in jenkins?
