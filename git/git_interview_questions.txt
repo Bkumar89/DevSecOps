@@ -1,0 +1,14 @@
+Git Interview Questions:
+    What is git?
+    What is git cherrypick?
+    which version of git you have used?
+    what is git bisect?
+    what is merge conflict and how to resolve merge conflict?
+    What is fast forward merge and recursive merge?
+    What is the difference between git merge and git rebase?
+    How to check line by line code commit in git? git blame.
+    How to check logs of git? git log
+    What is pull request and why it is needed ?
+    What is tags in git and why it is used?
+    What is branching strategy and its benefits ? Please explain what is the branching strategy your company follows? Hint - need to explain here feature barnches concepts and master/develop.
+    Have you done git migration? How to migarte from one git (bitbucket) to another git (azure devops git)? from svn to git migration?
