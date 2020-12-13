@@ -15,7 +15,7 @@ docker build -t <imagename> -f <dockerfilename> <pathof thedocker contextroot di
 example - docker build -t bishkumar/tomcat_jenkins:9.0.29 -f Dockerfile .
 
 To create the container from image:
-docker run -it -d -p <containerport>:<hostport> --name <containername> <imagename> <terminal like /bin/bash>
+docker run -it -d -p <hostport>:<containerport> --name <containername> <imagename> <terminal like /bin/bash>
 example: docker run -it -d -p 9090:8080 --name myjenkins bishkumar/tomcat_jenkins:9.0.29 /bin/bash
 
 To login to the docker container:
