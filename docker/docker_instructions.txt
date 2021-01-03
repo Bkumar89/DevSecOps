@@ -59,3 +59,67 @@ As opposed to volumes and bind mounts, a tmpfs mount is temporary, and only pers
 Using Volume in Docker container:
 docker run -it -d -p 5050:8080 -v /opt/appconf:/opt/appconf --name container1 bishkumar/sampledemoproject:5.5.7.0 /bin/bash
 
+
+DOCKER COMPOSE:
+Docker Compose is a way to execute multi-container applications. Docker Compose is used to run an application as single service. We define the yaml file for docker compose.
+
+version: "3"
+services:
+  activemq:
+        image: activemq:5.15.11
+        container_name: activemq
+        ports:
+          - "${MQ_PORT}:8161"
+          - "${MQ_TCP_PORT}:61616"
+        networks:
+          - bridge-network
+  frmapp:
+        image: image1
+        container_name: appserver
+        ports:
+          - "${APP_PORT}:8080"
+        networks:
+          - bridge-network
+        environment:
+          - ACTIVEMQ_TCP_URL=${ACTIVEMQ_TCP_URL}
+          - DRIVER=${DRIVER}
+          - JDBC_URL=${JDBC_URL}
+          - SCHEMA_PASS=${SCHEMA_PASS}
+          - SCHEMA=${SCHEMA}
+          - FRM_CONFIG=${FRM_CONFIG}
+        volumes:
+          - ${FRM_CONFIG}:/opt/app/app-1.3.5
+  guvapp:
+        image: image2
+        container_name: rule_guvnor
+        ports:
+          - "${GUVNOR_PORT}:8080"
+        networks:
+          - bridge-network
+        volumes:
+          - /opt/guvnor/drools_repo:/opt/guvnor/drools_repo
+networks:
+  bridge-network:
+  
+
+docker compose env file:
+DRIVER=oracle.jdbc.driver.OracleDriver
+JDBC_URL=jdbc:oracle:thin:@ip:1521/FRM
+ACTIVEMQ_TCP_URL=tcp://ip:14616
+SCHEMA_PASS=oracle
+SCHEMA=app135_Release
+MQ_PORT=8161
+MQ_TCP_PORT=14616
+APP_PORT=9090
+FRM_CONFIG=/opt/app
+GUVNOR_PORT=6060
+
+docker compose instructions:
+Run the below command to start the compose.
+Start:
+docker-compoe --env-file frm_oracle.env up -d
+
+Stop:
+docker-compose --env-file frm_oracle.env down
+
+
