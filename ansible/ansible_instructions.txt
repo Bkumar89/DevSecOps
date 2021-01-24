@@ -1,0 +1,14 @@
+1. Installing ansible on RHEL7/8 and Ubuntu.
+Install on RHEL:
+sudo yum install ansible
+--> To Enable the Ansible Engine repository for RHEL 8, run the following command:
+sudo subscription-manager repos --enable ansible-2.9-for-rhel-8-x86_64-rpms
+--> To enable the Ansible Engine repository for RHEL 7, run the following command:
+sudo subscription-manager repos --enable rhel-7-server-ansible-2.9-rpms
+
+Install on UBUNTU:
+sudo apt update
+sudo apt install software-properties-common
+sudo apt-add-repository --yes --update ppa:ansible/ansible
+sudo apt install ansible
+
