@@ -6,6 +6,21 @@ sudo subscription-manager repos --enable ansible-2.9-for-rhel-8-x86_64-rpms
 --> To enable the Ansible Engine repository for RHEL 7, run the following command:
 sudo subscription-manager repos --enable rhel-7-server-ansible-2.9-rpms
 
+Another way for RHEL:
+sudo dnf update -y
+check if you have python3 in your system if not please install python3
+To check python: python3 -V
+To install Python: sudo dnf install python3
+Install Python using subscription manager:
+Add subscription: subscription-manager repos --enable ansible-2.8-for-rhel-8-x86_64-rpms
+Install ansible: sudo  dnf -y install ansible
+
+Other Way:
+First install python3: sudo yum install python3
+Second Set alternative of python3 to python: sudo alternatives --set python /usr/bin/python3
+Install pyton3-pi: sudo yum -y install python3-pip
+Install ansible: sudo pip3 install ansible
+
 Install on UBUNTU:
 sudo apt update
 sudo apt install software-properties-common
