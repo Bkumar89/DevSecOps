@@ -27,3 +27,44 @@ sudo apt-get install software-properties-common
 sudo apt-add-repository --yes --update ppa:ansible/ansible
 sudo apt-get install ansible
 
+Create a new user ansadmin for ansible management purpose: This step has to be added on client machine as well as master or control machine.
+RHEL:
+useradd ansadmin
+passwd ansadmin
+
+Ubuntu:
+useradd -m ansadmin -s "/bin/bash"
+passwd ansadmin
+
+After adding the user add that sure into sudoers list so that the ansadmin user should have sudo permission. This step is applicable for both RHEL and Ubuntu.
+1. become root - sudo su
+2. open the sudoers file - vi /etc/sudoers
+3. add the new user after root like below insode user privilege section.
+# User privilege specification
+root    ALL=(ALL:ALL) ALL
+ansadmin ALL=(ALL:ALL) ALL
+4. open the sshd_config file - vi /etc/ssh/sshd_config
+5. change the authentication type to password authentication as yes
+6. restart the ssh service - service sshd restart
+
+Basic ansible ping command:
+ping - ansible -m ping servername
+copy - ansible all –m copy –a "src=/home/ansadmin/demo.txt dest=/home/ansadmin/"
+if getting any error then take the back of ansible.cfg in /etc/ansible folder and create a new ansible.cfg file at /etc/ansible and copy the below content.
+ansible.cfg file should have below avlues.
+
+[defaults]
+host_key_checking = no
+record_host_keys = no
+roles_path = /etc/ansible/roles
+log_path= /home/ansadmin/ansible.log
+forks = 100
+timeout = 60
+inventory = /etc/ansible
+transport = paramiko
+
+[ssh_connection]
+ssh_args = -o ConnectTimeout=60 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o ControlMaster=auto -o ControlPersist=600s
+pipelining = True
+control_path = /tmp/ansible-ssh-%%h-%%p-%%r
+
