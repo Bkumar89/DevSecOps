@@ -47,6 +47,9 @@ ansadmin ALL=(ALL:ALL) ALL
 5. change the authentication type to password authentication as yes
 6. restart the ssh service - service sshd restart
 
+Ansible Host file configuration should be used as below:
+<IPAddress/hostanme> ansible_user=<username> ansible_ssh_pass=<ssh password> ansible_become_pass=<sudo ssh password>
+
 Basic ansible ping command:
 ping - ansible -m ping servername
 copy - ansible all –m copy –a "src=/home/ansadmin/demo.txt dest=/home/ansadmin/"
