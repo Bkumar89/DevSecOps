@@ -71,3 +71,11 @@ ssh_args = -o ConnectTimeout=60 -o UserKnownHostsFile=/dev/null -o StrictHostKey
 pipelining = True
 control_path = /tmp/ansible-ssh-%%h-%%p-%%r
 
+Ansible PLaybook:
+Execute the Ansible Playbook:
+ansible-playbook -i /etc/ansible/hosts playbook1.yaml
+dry run of playbook:
+ansible-playbook -i /etc/ansible/hosts playbook1.yaml --check
+syntax check of the playbook:
+ansible-playbook -i /etc/ansible/hosts playbook1.yaml --syntax-check
+
