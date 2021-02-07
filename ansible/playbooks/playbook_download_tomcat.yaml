@@ -1,0 +1,51 @@
+---
+- hosts: rhelserver
+  become: yes
+  become_user: ansadmin
+  become_method: sudo
+  vars:
+    tomcat_url: "https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.34/bin/apache-tomcat-9.0.34.tar.gz"
+    install_dir: "/home/ansadmin/tomcat"
+    tomcat_file_name: "apache-tomcat-9.0.34.tar.gz"
+    shutdown_port: 9005
+    conn_port: 9090
+    conn_https_port: 9443
+  tasks:
+  - name: Create the tomcat Directory
+    file:
+      path: "{{ install_dir }}"
+      state: directory
+      mode: 0755
+  - name: Download Tomcat9
+    get_url:
+      url: "{{ tomcat_url }}"
+      dest: "{{ install_dir }}"
+      owner: ansadmin
+      group: ansadmin
+      mode: 0755
+  - name: Extract the zip
+    unarchive:
+      src: "{{ install_dir }}/{{ tomcat_file_name }}"
+      dest: "{{ install_dir }}"
+      remote_src: yes
+    changed_when: True
+    notify:
+    - "Failed"
+  - name: Template server.xml
+    template:
+      src: /home/ansadmin/server.xml.j2
+      dest: "{{ install_dir }}/apache-tomcat-9.0.34/conf/server.xml"
+      owner: ansadmin
+      group: ansadmin
+      mode: 0755
+    changed_when: True
+    notify:
+    - "Check_Handler"
+  handlers:
+  - name: Check_Handler
+    debug:
+      msg: "Handler check is successful when server.xml is templated"
+  - name: Failed
+    debug:
+      msg: "The task is failed. PLease check it"
+

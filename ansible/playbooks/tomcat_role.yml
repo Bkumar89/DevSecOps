@@ -1,0 +1,8 @@
+---
+- hosts: rhelserver
+  become: yes
+  become_user: ansadmin
+  become_method: sudo
+  gather_facts: yes
+  roles:
+   - /etc/ansible/roles/tomcat

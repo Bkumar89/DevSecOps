@@ -1,0 +1,38 @@
+---
+- hosts: rhelserver
+  become: yes
+  become_user: ansadmin
+  become_method: sudo
+  gather_facts: yes
+  vars:
+    var1: Hello Ansible World
+    var2: Hi, How r u ?
+  tasks:
+  - name: Ansible Variable use
+    debug:
+      msg: "{{ var1 }}"
+  - name: Ansible var2 use
+    debug:
+      msg: "{{ var2 }}"
+    changed_when: True
+    notify:
+    - "Check_Notify"
+  - name: Copy the file abc.txt
+    copy:
+      src: /home/ansadmin/abc.txt
+      dest: /home/ansadmin/abc.txt
+      owner: ansadmin
+      group: ansadmin
+      mode: 0644
+    changed_when: True
+    notify:
+    - "Check_Notify1"
+ 
+  handlers:
+    - name: Check_Notify
+      debug:
+        msg: "Check is successfull"
+    - name: Check_Notify1
+      debug:
+        msg: "Check1 is successfull"
+    
