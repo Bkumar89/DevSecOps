@@ -79,3 +79,19 @@ ansible-playbook -i /etc/ansible/hosts playbook1.yaml --check
 syntax check of the playbook:
 ansible-playbook -i /etc/ansible/hosts playbook1.yaml --syntax-check
 
+To execute the anisble playbook with extra variables at run time: 
+ansible-playbook -i hosts playbook1.yaml -e var1=hellohowru -e var2=checking .......
+
+Roles:
+Create the ansible role:
+ansible-galaxy init <rolename>
+ex: ansible-galaxy init tomcat
+
+Execute the ansible role:
+ansible-playbook -i <inventory host file path> <playbook file path>
+ex: ansible-playbook -i inventory/hosts playbooks/playbook1.yml
+
+To execute the ansible roles with extra variables:
+ansible-playbook -i <inventory host file path> <playbook file path> -e var1=<value1> -e var2=<value2> -e var3=value3 ...
+ex: ansible-playbook -i inventory/hosts playbooks/playbook1.yml -e var1=<value1> -e var2=<value2> -e var3=value3 ...
+
