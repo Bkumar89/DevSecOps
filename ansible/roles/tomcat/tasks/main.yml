@@ -1,0 +1,11 @@
+---
+# tasks file for tomcat
+- name: Ansible variable use var1
+  debug:
+    msg: "{{ var1 }}"
+- name: Ansible variable use var2
+  debug:
+    msg: "{{ var2 }}"
+  changed_when: True
+  notify:
+  - "Test_Notify"

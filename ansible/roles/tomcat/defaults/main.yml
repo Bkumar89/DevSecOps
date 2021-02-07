@@ -1,0 +1,4 @@
+---
+# defaults file for tomcat
+var1: rolecheck
+var2: hello ansible

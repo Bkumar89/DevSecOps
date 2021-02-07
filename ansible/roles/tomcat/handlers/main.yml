@@ -1,0 +1,5 @@
+---
+# handlers file for tomcat
+- name: Test_Notify
+  debug:
+    msg: "Testing Notify. It is successfully checked"
