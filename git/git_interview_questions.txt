@@ -12,3 +12,4 @@ Git Interview Questions:
     What is tags in git and why it is used?
     What is branching strategy and its benefits ? Please explain what is the branching strategy your company follows? Hint - need to explain here feature barnches concepts and master/develop.
     Have you done git migration? How to migarte from one git (bitbucket) to another git (azure devops git)? from svn to git migration?
+    What is the difference between git pull and git fetch ?
