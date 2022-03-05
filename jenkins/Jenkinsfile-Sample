@@ -1,0 +1,56 @@
+pipeline
+{
+    agent
+    {
+        label 'master'
+    }
+    
+    stages
+    {
+        stage ('CHECKOUT')
+        {
+            steps
+            {
+                step([$class: 'WsCleanup'])
+                echo "Clonning the code"
+                checkout([$class: 'GitSCM', branches: [[name: 'master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/Bkumar89/Sampledemoproject.git']]])
+            }
+        }
+        
+    stage ('BUILD')
+        {
+            steps
+            {
+                
+                script
+                {
+                    sh "mvn clean install"
+                }
+                
+            }
+        }
+        
+    stage ('SONAR-SCAN')
+        {
+            steps
+            {
+                echo "RUN SONAR SCAN"
+                
+                
+            }
+        }
+        
+    stage ('ARCHIVE-BUILD')
+      {
+          steps
+          {
+              sh "mv ${WORKSPACE}/target/*.war ${WORKSPACE}/target/Sampledemoproject-${BUILD_NUMBER}.war"
+              archiveArtifacts artifacts: 'target/*.war', followSymlinks: false
+          }
+      }
+        
+    }
+    
+    
+    
+}
